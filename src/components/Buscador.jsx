@@ -9,6 +9,7 @@ const Buscador = ({poke, setSearch, setError}) => {
         pok.name.toLowerCase().includes(Text_Search) || 
         pok.type.toLowerCase().includes(Text_Search)
         );
+        e.preventDefault()
         setSearch(result)
 
         if(result==''){

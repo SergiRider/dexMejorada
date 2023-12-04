@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import notFound from '../assets/img/missing-poke.png'
 
 
 const MiApi = ({setPoke, search, setSearch}) => {
@@ -15,20 +16,20 @@ const MiApi = ({setPoke, search, setSearch}) => {
              const pokesPush =results.map(async(pokemon)=>{
           const response = await fetch(pokemon.url)
           const poke= await response.json()    
-          const types= poke.types.map(type=>type.type.name).join(', ')  
-
+          const types= poke.types.map(type=>type.type.name).join(', ') 
+          const pS=poke.sprites.versions
             return{
                 id: poke.id,
                 name:poke.name,
-                imgG1: poke.sprites.versions["generation-i"]["red-blue"].front_default,
-                imgG2: poke.sprites.versions["generation-ii"].gold.front_default,
-                imgG3: poke.sprites.versions["generation-iii"].emerald.front_default||poke.sprites.versions["generation-iii"]['firered-leafgreen'].front_default,
-                imgG4: poke.sprites.versions["generation-iv"].platinum.front_default,
-                imgG5: poke.sprites.versions["generation-v"]["black-white"].animated.front_default||poke.sprites.versions["generation-v"]["black-white"].front_default,
-                imgG6: poke.sprites.versions["generation-vi"]["omegaruby-alphasapphire"].front_default,
-                imgG7: poke.sprites.versions["generation-vii"]["ultra-sun-ultra-moon"].front_default||poke.sprites.versions["generation-vii"].icons.front_default,
-                imgG8: poke.sprites.versions["generation-viii"].icons.front_default||poke.sprites.front_default,
-                type: types,            
+                imgG1: pS["generation-i"]["red-blue"].front_default|| notFound,
+                imgG2: pS["generation-ii"].gold.front_default|| notFound,
+                imgG3: pS["generation-iii"].emerald.front_default||pS["generation-iii"]['firered-leafgreen'].front_default|| notFound,
+                imgG4: pS["generation-iv"].platinum.front_default|| notFound,
+                imgG5: pS["generation-v"]["black-white"].animated.front_default||pS["generation-v"]["black-white"].front_default|| notFound,
+                imgG6: pS["generation-vi"]["omegaruby-alphasapphire"].front_default|| notFound,
+                imgG7: pS["generation-vii"]["ultra-sun-ultra-moon"].front_default||pS["generation-vii"].icons.front_default|| notFound,
+                imgG8: pS["generation-viii"].icons.front_default||poke.sprites.front_default|| notFound,
+                type: types,       
             }
         })
         
@@ -55,6 +56,7 @@ const MiApi = ({setPoke, search, setSearch}) => {
                     <td><img src={poke.imgG6}></img></td>
                     <td><img src={poke.imgG7}></img></td>
                     <td><img src={poke.imgG8}></img></td>
+                    
                 </tr>
             ))}
         </tbody>    
