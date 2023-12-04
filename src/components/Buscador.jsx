@@ -31,7 +31,7 @@ const Buscador = ({poke, setSearch, setError}) => {
     <Form inline>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Form.Label>
-          <h3 className='busqueda'>Sprites de GEN-I y GEN-II</h3>
+          <h3 className='busqueda'>Sprites todas las generaciones</h3>
           </Form.Label>
         <Form.Control type="text" placeholder="Nombre de pokemon o tipo" onChange={searching} />
       </Form.Group>
